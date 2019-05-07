@@ -71,6 +71,7 @@
   - [Object](java/5-object.md)
   - [StringBuilder](java/6-StringBuilder.md)
   - [代理](java/7-proxy.md)
+	- [注解](java/8-annotation.md)
 	- [面试题](java/17-questions.md)
   - [集合](java/collection/README.md)
     - [集合](java/collection/1-collection.md)
