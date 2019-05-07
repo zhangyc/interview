@@ -24,10 +24,10 @@ static final int hash(Object key) {
 
 之前已经提过，在获取HashMap的元素时，基本分两步：
 
-  - 首先根据hashCode()做hash，然后确定bucket的index；
-  - 如果bucket的节点的key不是我们需要的，则通过keys.equals()在链中找。
+  - 首先根据 `hashCode()` 做 hash ，然后确定 bucket 的 index ；
+  - 如果 bucket 的节点的 key 不是我们需要的，则通过 `keys.equals()` 在链中找。
 
-在Java 8之前的实现中是用链表解决冲突的，在产生碰撞的情况下，进行get时，两步的时间复杂度是O(1)+O(n)。因此，当碰撞很厉害的时候n很大，O(n)的速度显然是影响速度的。因此在Java 8中，如果一个bucket中碰撞冲突的元素超过某个限制(默认是8)，则使用红黑树来替换链表，这样复杂度就变成了`O(1)+O(logn)`了，这样在n很大的时候，能够比较理想的解决这个问题，在[Java 8：HashMap的性能提升](http://www.importnew.com/14417.html)一文中有性能测试的结果。
+在Java 8之前的实现中是用链表解决冲突的，在产生碰撞的情况下，进行 get 时，两步的时间复杂度是 $$O(1)+O(n)$$。因此，当碰撞很厉害的时候n很大， $$O(n)$$ 的速度显然是影响速度的。因此在Java 8中，如果一个 bucket 中碰撞冲突的元素超过某个限制(默认是8)，则使用红黑树来替换链表，这样复杂度就变成了 $$O(1)+O(logn)$$ 了，这样在 n 很大的时候，能够比较理想的解决这个问题，在[Java 8：HashMap的性能提升](http://www.importnew.com/14417.html)一文中有性能测试的结果。
 
 ## Resize
 
@@ -39,7 +39,7 @@ static final int hash(Object key) {
 
 ![](images/2-HashMap-7bdc9.png)
 
-因此元素在重新计算hash之后，因为n变为2倍，那么n-1的mask范围在高位多1bit(红色)，因此新的index就会发生这样的变化：
+因此元素在重新计算 hash 之后，因为n变为2倍，那么 n-1 的 mask 范围在高位多1bit(红色)，因此新的index就会发生这样的变化：
 
 ![](images/2-HashMap-03719.png)
 
@@ -53,4 +53,4 @@ static final int hash(Object key) {
 
 [疫苗：JAVA HASHMAP的死循环](https://coolshell.cn/articles/9606.html)
 
-在 `HashMap` Resize的过程中由于本身并不是线程安全，有可能出现死锁的问题。
+在 `HashMap` 并发进行 Resize 的过程中会出现环形链表，导致 `get()` 操作死循环。
