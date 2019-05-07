@@ -21,8 +21,6 @@ AQS 提供一个框架，用于实现依赖于先进先出（FIFO）`等待队�
 
 上述所有方法默认实现都会抛出 `UnsupportedOperationException`。这个方法的具体实现必须保证内部的线程安全，并且应该快速并且不会阻塞。所有其他方法均为 `final`，因为他们不能独立变化。
 
-You may also find the inherited methods from AbstractOwnableSynchronizer useful to keep track of the thread owning an exclusive synchronizer. You are encouraged to use them -- this enables monitoring and diagnostic tools to assist users in determining which threads hold locks.
-
 也许你发现一些继承自 `AbstractOwnableSynchronizer` 的方法非常有助于线程保持拥有其独占同步器。同时我们也鼓励使用他们，有助于监控和诊断工具判定哪些线程持有来锁。
 
 ## [ReentrantLock](http://ifeve.com/java-special-troops-aqs/)
@@ -63,7 +61,7 @@ private transient Node lastWaiter;
 
 ![](images/4-AQS-cef7a.png)
 
-基本上，把这张图看懂，你也就知道 condition 的处理流程了。所以，我先简单解释下这图，然后再具体地解释代码实现。
+基本上，把这张图看懂，你也就知道 condition 的处理流程了。
 
   1. 条件队列和等待队列的节点，都是 Node 的实例，因为条件队列的节点是需要转移到等待队列中去的；
   2. 我们知道一个 `ReentrantLock` 实例可以通过多次调用 `newCondition()` 来产生多个 `Condition` 实例，这里对应 `condition1` 和 `condition2`。注意，`ConditionObject` 只有两个属性 `firstWaiter` 和 `lastWaiter；`
