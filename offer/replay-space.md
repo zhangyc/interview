@@ -14,24 +14,11 @@
 ```
 public String replaceSpace(StringBuffer str) {
     char[] chars = str.toString().toCharArray();
-    int spaceCount = 0;
-
+    StringBuilder res = new StringBuilder();
     for (char c : chars) {
-        if (c == ' ') spaceCount++;
+        if (c == ' ') res.append("%20");
+        else res.append(c);
     }
-
-    char[] res = new char[chars.length + spaceCount * 2];
-
-    for (int i = 0, j = 0; i < chars.length; i++) {
-        if (chars[i] == ' ') {
-            res[j++] = '%';
-            res[j++] = '2';
-            res[j++] = '0';
-        } else {
-            res[j++] = chars[i];
-        }
-    }
-
-    return new String(res);
+    return res.toString();
 }
 ```

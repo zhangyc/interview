@@ -21,33 +21,19 @@ public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
     return buildTree(preIndex, in, 0, in.length - 1);
 }
 
-private TreeNode buildTree(Map<Integer, Integer> preIndex,
-                           int[] in, int start, int end) {
-    Integer newRootValue = -1;
-    Integer newRootValueIndexInPre = Integer.MAX_VALUE;
+private TreeNode buildTree(Map<Integer, Integer> preIndex, int[] in, int start, int end) {
+    if (start == end) {
+        return new TreeNode(in[start]);
+    }
+    int indexOfRoot = start;
     for (int i = start; i <= end; i++) {
-        Integer cur = preIndex.get(in[i]);
-        if (cur < newRootValueIndexInPre) {
-            newRootValueIndexInPre = cur;
-            newRootValue = in[i];
+        if (preIndex.get(in[i]) < preIndex.get(in[indexOfRoot])) {
+            indexOfRoot = i;
         }
     }
-
-    Integer newRootValueIndexInIn = 0;
-    for (int i = 0; i < in.length; i++) {
-        if (newRootValue == in[i]) {
-            newRootValueIndexInIn = i;
-        }
-    }
-
-    TreeNode root = new TreeNode(newRootValue);
-
-    if (start <= newRootValueIndexInIn - 1)
-        root.left = buildTree(preIndex, in, start, newRootValueIndexInIn - 1);
-
-    if (newRootValueIndexInIn + 1 <= end)
-        root.right = buildTree(preIndex, in, newRootValueIndexInIn + 1, end);
-
+    TreeNode root = new TreeNode(in[indexOfRoot]);
+    if (start <= indexOfRoot - 1) root.left = buildTree(preIndex, in, start, indexOfRoot - 1);
+    if (indexOfRoot + 1 <= end) root.right = buildTree(preIndex, in, indexOfRoot + 1, end);
     return root;
 }
 ```

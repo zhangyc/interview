@@ -2,7 +2,7 @@
 
 ## 题目
 
-https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+[牛客网](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 队列中的元素为int类型。
 
@@ -15,20 +15,20 @@ https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=
 相当于将两个 stack 拼接：-> stack1 <::> stack2 ->
 
 ```
-Stack<Integer> stack1 = new Stack<>();
-Stack<Integer> stack2 = new Stack<>();
+Stack<Integer> pushStack = new Stack<>();
+Stack<Integer> popStack = new Stack<>();
 
 public void push(int node) {
-    stack1.push(node);
+    pushStack.push(node);
 }
 
 public int pop() {
-    if (stack2.isEmpty()) {
-        while (!stack1.isEmpty()) {
-            stack2.push(stack1.pop());
+    if (popStack.isEmpty()) {
+        while (!pushStack.isEmpty()) {
+            popStack.push(pushStack.pop());
         }
     }
-
-    return stack2.pop();
+    if (popStack.isEmpty()) return -1;
+    else return popStack.pop();
 }
 ```
