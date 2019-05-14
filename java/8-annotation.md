@@ -64,3 +64,7 @@ default:
 }
 ...
 ```
+
+## 参考链接
+
+- [java注解是怎么实现的？](https://www.zhihu.com/question/24401191)

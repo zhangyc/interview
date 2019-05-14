@@ -87,10 +87,10 @@ Netty 的 Zero-copy 体现在如下几个个方面:
 
 ![image](images/922e67970b6ac7bf78cd43ac61f7aec0.png)
 
-## Epool 触发
+## Epoll 触发
 
   - `NioChannel`：是水平触发
-  - `EpollChannel`：是边缘触发，Netty 自己触发 Epoll Event
+  - `EpollChannel`：是边缘触发，Netty 为保证数据完整会触发 Epoll Event
 
 ## [JDK NIO BUG](https://bugs.java.com/bugdatabase/view_bug.do?bug_id=6403933)
 

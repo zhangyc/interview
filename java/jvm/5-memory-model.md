@@ -31,9 +31,9 @@ HotSpot 内存模型 -- JDK8
 
 ## 参考链接
 
-[JEP 122: Remove the Permanent Generation](http://openjdk.java.net/jeps/122)
-[Java JVM Run-time Data Areas - Javapapers](https://javapapers.com/core-java/java-jvm-run-time-data-areas/#Run_time_Constant_Pool)
-[JVM Internals](http://blog.jamesdbloom.com/JVMInternals.html#constant_pool)
-[深入探究 JVM | Java 的内存区域解析](https://www.sczyh30.com/posts/Java/jvm-memory/)
-[The Java Virtual Machine](http://www.artima.com/insidejvm/ed2/jvm2.html)
-[The Java HotSpot Performance Engine Architecture](https://www.oracle.com/technetwork/java/whitepaper-135217.html)
+- [JEP 122: Remove the Permanent Generation](http://openjdk.java.net/jeps/122)
+- [Java JVM Run-time Data Areas - Javapapers](https://javapapers.com/core-java/java-jvm-run-time-data-areas/#Run_time_Constant_Pool)
+- [JVM Internals](http://blog.jamesdbloom.com/JVMInternals.html#constant_pool)
+- [深入探究 JVM | Java 的内存区域解析](https://www.sczyh30.com/posts/Java/jvm-memory/)
+- [The Java Virtual Machine](http://www.artima.com/insidejvm/ed2/jvm2.html)
+- [The Java HotSpot Performance Engine Architecture](https://www.oracle.com/technetwork/java/whitepaper-135217.html)
